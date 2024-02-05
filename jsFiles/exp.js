@@ -204,8 +204,10 @@ const exp = (function() {
             5 5 5 5 5   ev = 5; v = 0
             9 9 9 9 9   ev = 9; v = 0
         */
+            {sectors: [ wedges.one, wedges.one, wedges.one, wedges.one ], ev: 4, var: 0, arrangement: 4},
             {sectors: [ wedges.four, wedges.four, wedges.four, wedges.four ], ev: 4, var: 0, arrangement: 4},
             {sectors: [ wedges.nine, wedges.nine, wedges.nine, wedges.nine ], ev: 9, var: 0, arrangement: 4},
+            {sectors: [ wedges.twelve, wedges.twelve, wedges.twelve, wedges.twelve ], ev: 9, var: 0, arrangement: 4},
         ];
 
     let scoreTracker = 0; // track current score
