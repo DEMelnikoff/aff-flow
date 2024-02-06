@@ -168,19 +168,20 @@ const exp = (function() {
 
     // define each wedge
     const wedges = {
-        one: {color:"#fe0000", label:"1"},
         two: {color:"#800001", label:"2"},
-        three: {color:"#fe6a00", label:"3"},
         four: {color:"#803400", label:"4"},
         five: {color:"#ffd800", label:"5"},
         six: {color:"#806b00", label:"6"},
         seven: {color:"#00fe21", label:"7"},
         eight: {color:"#007f0e", label:"8"},
         nine: {color:"#0094fe", label:"9"},
-        ten: {color:"#00497e", label:"10"},
         eleven: {color:"#0026ff", label:"11"},
+
+
+        one: {color:"#fe0000", label:"1"},
+        three: {color:"#fe6a00", label:"3"},
+        ten: {color:"#00497e", label:"10"},
         twelve: {color:"#001280", label:"12"},
-        thirteen: {color:"#b100fe", label:"13"},
     };
 
 
@@ -190,32 +191,33 @@ const exp = (function() {
      
 
         /*  2 2
-            3 3 6 6    ev = 4.5; v = 3
-            7 7 10 10  ev = 8.5; v = 3
-            2 2 7 7    ev = 4.5; v = 8.33
-            6 6 11 11  ev = 4.5; v = 8.33
+            4 4 5 5    ev = 4.5; mad = 0.5
+            8 8 9 9    ev = 8.5; mad = 0.5
+            2 2 7 7    ev = 4.5; mad = 2.5
+            6 6 11 11  ev = 8.5; mad = 2.5
         */
-            {sectors: [ wedges.four, wedges.four, wedges.five, wedges.five ], ev: 4.5, var: 3, arrangement: 22},
-            {sectors: [ wedges.eight, wedges.eight, wedges.nine, wedges.nine ], ev: 8.5, var: 3, arrangement: 22},
-            {sectors: [ wedges.one, wedges.one, wedges.eight, wedges.eight ], ev: 4.5, var: 8.33, arrangement: 22},
-            {sectors: [ wedges.five, wedges.five, wedges.twelve, wedges.twelve ], ev: 8.5, var: 8.33, arrangement: 22},
+            {sectors: [ wedges.four, wedges.four, wedges.five, wedges.five ], ev: 4.5, mad: .5, mi: 1},
+            {sectors: [ wedges.eight, wedges.eight, wedges.nine, wedges.nine ], ev: 8.5, mad: 2.5, mi: 1},
+            {sectors: [ wedges.two, wedges.two, wedges.seven, wedges.seven ], ev: 4.5, mad: .5, mi: 1},
+            {sectors: [ wedges.five, wedges.five, wedges.twelve, wedges.twelve ], ev: 8.5, mad: 2.5, mi: 1},
 
         /*  4
             5 5 5 5 5   ev = 5; v = 0
             9 9 9 9 9   ev = 9; v = 0
         */
-            {sectors: [ wedges.one, wedges.one, wedges.one, wedges.one ], ev: 4, var: 0, arrangement: 4},
-            {sectors: [ wedges.four, wedges.four, wedges.four, wedges.four ], ev: 4, var: 0, arrangement: 4},
-            {sectors: [ wedges.nine, wedges.nine, wedges.nine, wedges.nine ], ev: 9, var: 0, arrangement: 4},
-            {sectors: [ wedges.twelve, wedges.twelve, wedges.twelve, wedges.twelve ], ev: 9, var: 0, arrangement: 4},
+            {sectors: [ wedges.one, wedges.one, wedges.one, wedges.one ], ev: 1, mad: 0, mi: 0},
+            {sectors: [ wedges.three, wedges.three, wedges.three, wedges.three ], ev: 3, mad: 0, mi: 0},
+            {sectors: [ wedges.ten, wedges.ten, wedges.ten, wedges.ten ], ev: 10, mad: 0, mi: 0},
+            {sectors: [ wedges.twelve, wedges.twelve, wedges.twelve, wedges.twelve ], ev: 12, mad: 0, mi: 0},
         ];
+
 
     let scoreTracker = 0; // track current score
     let outcome = 0; // track outcome of each spin
     let round = 1;  // track current round
-    const makeTokenArray = function() {
-        return jsPsych.randomization.repeat(['plus', 'minus', 'normal', 'normal', 'normal'], 1);
-    };
+
+    const makeTokenArray = function() { return jsPsych.randomization.repeat(['plus', 'minus', 'normal', 'normal', 'normal'], 1) };
+
     let tokenArray = makeTokenArray();
 
     // trial: spinner
@@ -366,7 +368,7 @@ const exp = (function() {
     };
 
     p.task = {
-        timeline: [wheelLoop],
+        timeline: [spin],
         repetitions: 1,
         timeline_variables: wheels,
         randomize_order: true,
