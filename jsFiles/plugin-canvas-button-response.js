@@ -125,10 +125,10 @@ var jsPsychCanvasButtonResponse = (function (jspsych) {
               this.jsPsych.pluginAPI.clearAllTimeouts();
               // gather the data to store for the trial
               var trial_data = {
-                  outcomes: spinnerData.outcomes,
+                  outcomes: spinnerData.outcomes[0],
                   score: spinnerData.score,
                   rt: spinnerData.rt,
-                  colors: spinnerData.colors,
+                  colors: spinnerData.colors[0],
               };
               // clear the display
               display_element.innerHTML = "";

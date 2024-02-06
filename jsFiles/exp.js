@@ -228,7 +228,7 @@ const exp = (function() {
 
     let scoreTracker = 0; // track current score
     let outcome = 0; // track outcome of each spin
-    let round = 1;  // track current round
+    let round = 0;  // track current round
     let color = null;
     let pred1, pred2;
     const affLabels = ['extremely negative', 'very negative', 'moderately negative', 'slightly negative', 'neither positive nor negative', 'slightly positive', 'moderately positive', 'very positive', 'extremely positive']
@@ -252,8 +252,8 @@ const exp = (function() {
         on_finish: function(data) {
             data.round = round;
             scoreTracker = data.score;
-            outcome = data.outcomes[0];
-            color = data.colors[0];
+            outcome = data.outcomes;
+            color = data.colors;
         }
     };
 
@@ -313,11 +313,8 @@ const exp = (function() {
         on_finish: function(data) {
             pred1 = affLabels[data.response.affect_pre_1];
             pred2 = affLabels[data.response.affect_pre_2];
+            round++
             data.round = round;
-            let scoreArray = jsPsych.data.get().select('score').values;
-            let outcomesArray = jsPsych.data.get().select('outcomes').values;
-            data.score = scoreArray[scoreArray.length - 1];
-            data.outcomes = outcomesArray[outcomesArray.length - 1];
             saveSurveyData(data);
         }
     };
@@ -351,10 +348,6 @@ const exp = (function() {
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
-            let scoreArray = jsPsych.data.get().select('score').values;
-            let outcomesArray = jsPsych.data.get().select('outcomes').values;
-            data.score = scoreArray[scoreArray.length - 1];
-            data.outcomes = outcomesArray[outcomesArray.length - 1];
             saveSurveyData(data);
         }
     };
@@ -364,7 +357,7 @@ const exp = (function() {
         questions: function() {
             const Qs = [
                 {prompt: `<p>You landed on a <b>${outcome}</b>. Next, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how positive or negative do you think you'll feel?`,
-                name: `affect_pre`,
+                name: `affect_post`,
                 labels: affLabels},
             ];
             return Qs;
@@ -375,10 +368,6 @@ const exp = (function() {
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
-            let scoreArray = jsPsych.data.get().select('score').values;
-            let outcomesArray = jsPsych.data.get().select('outcomes').values;
-            data.score = scoreArray[scoreArray.length - 1];
-            data.outcomes = outcomesArray[outcomesArray.length - 1];
             saveSurveyData(data);
         }
     };
@@ -390,13 +379,13 @@ const exp = (function() {
             name: `immersive`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
             {prompt: `How <b>engrossing</b> was the wheel that you just spun?`,
-            name: `dv_value`,
+            name: `engrossing`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
             {prompt: `How <b>engaging</b> was the wheel that you just spun?`,
-            name: `dv_value`,
+            name: `engaging`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
             {prompt: `How <b>boring</b> was the wheel that you just spun?`,
-            name: `dv_value`,
+            name: `boring`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
         ],
         randomize_question_order: false,
@@ -404,10 +393,6 @@ const exp = (function() {
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
-            let scoreArray = jsPsych.data.get().select('score').values;
-            let outcomesArray = jsPsych.data.get().select('outcomes').values;
-            data.score = scoreArray[scoreArray.length - 1];
-            data.outcomes = outcomesArray[outcomesArray.length - 1];
             saveSurveyData(data);
         }
     };
