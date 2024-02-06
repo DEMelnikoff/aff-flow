@@ -468,101 +468,6 @@ const exp = (function() {
             post_trial_gap: 500,
         };
 
-        const genFlowScale = ['-2<br>Totally<br>Disagree', '-1<br>Disagree', '0<br>Neither agree<br>nor disagree', '1<br>Agree', '2<br>Totally<br>Agree'];
-
-        const flowGenQuestions = {
-            type: jsPsychSurveyLikert,
-            preamble:
-                `<div style='padding-top: 50px; width: 900px; font-size:16px'>
-                    <p>Please express the extent to which you disagree or agree with each statement.</p>
-                </div>`,
-            questions: [
-                {
-                    prompt: `I enjoy challenging tasks/activities that require a lot of focus.`,
-                    name: `genFlow_1`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `When I am focused on a task/activity, I quickly tend to forget my surroundings (other people, time, and place).`,
-                    name: `genFlow_2`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I usually experience a good flow when I do something (things that are neither too easy nor too difficult for me).`,
-                    name: `genFlow_3`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I have several different areas of interest.`,
-                    name: `genFlow_4`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `It is difficult for me to walk away from or quit a project I am currently working on.`,
-                    name: `genFlow_5`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I become stressed in the face of difficult/challenging tasks.`,
-                    name: `genFlow_6r`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `It is difficult for me to maintain concentration over time.`,
-                    name: `genFlow_7r`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I quickly become tired of the things I do.`,
-                    name: `genFlow_8r`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I am usually satisfied with the results of my efforts across various tasks (I experience feelings of mastery).`,
-                    name: `genFlow_9`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `When I focus on something, I often forget to take a break.`,
-                    name: `genFlow_10`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I get bored easily.`,
-                    name: `genFlow_11r`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `My daily tasks are exhausting rather than stimulating.`,
-                    name: `genFlow_12r`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-                {
-                    prompt: `I develop an interest for most of the things I do in life.`,
-                    name: `genFlow_13`,
-                    labels: genFlowScale,
-                    required: true,
-                },
-            ],
-            randomize_question_order: false,
-            scale_width: 500,
-            on_finish: (data) => {
-                saveSurveyData(data); 
-            },
-        };
-
         const gender = {
             type: jsPsychHtmlButtonResponse,
             stimulus: '<p>What is your gender?</p>',
@@ -615,7 +520,7 @@ const exp = (function() {
         }; 
 
         const demos = {
-            timeline: [taskComplete, flowGenQuestions, gender, age, ethnicity, english, finalWord, pid]
+            timeline: [taskComplete, gender, age, ethnicity, english, finalWord, pid]
         };
 
         return demos;
@@ -641,6 +546,6 @@ const exp = (function() {
 
 }());
 
-const timeline = [exp.task, exp.consent, exp.intro, exp.practice, exp.task, exp.demographics, exp.save_data];
+const timeline = [exp.consent, exp.intro, exp.practice, exp.task, exp.demographics, exp.save_data];
 
 jsPsych.run(timeline);
