@@ -124,7 +124,6 @@ const createSpinner = function(canvas, spinnerData, score, sectors) {
       correctSpeed.shift();
       correctSpeed.push(speed);
     };
-    console.log(correctSpeed);
     render(currentAngle);
   };
 
@@ -179,6 +178,7 @@ const createSpinner = function(canvas, spinnerData, score, sectors) {
         currentAngle = oldAngle;
         let sector = sectors[getIndex()];
         spinnerData.outcomes.push(parseFloat(sector.label));
+        spinnerData.colors.push(sector.color);
         drawSector(sectors, getIndex());
         updateScore(parseFloat(sector.label), sector.color);
         window.cancelAnimationFrame(req);
@@ -196,10 +196,10 @@ const createSpinner = function(canvas, spinnerData, score, sectors) {
     let s = 's';
     spin_num == 1 ? s == '' : s == 's';
     //scoreMsg.innerHTML = `<span style="color:${color}; font-weight: bolder">${score}</span>`;
-    scoreMsg.innerHTML = `<span style="font-weight: bold">${score}</span>`;
-    spinNumMsg.innerHTML = `(${spin_num} spin${s} remaining)`;
+    //scoreMsg.innerHTML = `<span style="font-weight: bold">${score}</span>`;
+    //spinNumMsg.innerHTML = `(${spin_num} spin${s} remaining)`;
     setTimeout(() => {
-      scoreMsg.innerHTML = `${score}`
+      //scoreMsg.innerHTML = `${score}`
       isSpinning = false;
       drawSector(sectors, null);
       onWheel ? canvas.style.cursor = "grab" : canvas.style.cursor = "";
@@ -312,7 +312,6 @@ const createSpinner = function(canvas, spinnerData, score, sectors) {
   /* add event listners */
   canvas.addEventListener('mousedown', function(e) {
       if (onWheel) { onGrab(e.clientX, e.clientY) };
-      console.log(e.clientX, e.clientY)
   });
 
   canvas.addEventListener('mousemove', function(e) {

@@ -112,6 +112,7 @@ var jsPsychCanvasButtonResponse = (function (jspsych) {
             outcomes: [],
             score: 0,
             rt: null,
+            colors: [],
           };
           trial.stimulus(c, spinnerData);
 
@@ -127,6 +128,7 @@ var jsPsychCanvasButtonResponse = (function (jspsych) {
                   outcomes: spinnerData.outcomes,
                   score: spinnerData.score,
                   rt: spinnerData.rt,
+                  colors: spinnerData.colors,
               };
               // clear the display
               display_element.innerHTML = "";

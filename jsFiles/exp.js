@@ -54,7 +54,7 @@ const exp = (function() {
             `<div class='parent'>
                 <p>There are 18 prize wheels in total.<br>You will spin each prize wheel 5 times before continuing to the next wheel.</p>
                 <p>After spinning a wheel 5 times, you'll answer a question about your feelings.</br>
-                Specifically, you'll report how ${settings.dvText}.</p>
+                Specifically, you'll report how <b>immersed and engaged</b> you felt while spinning the previous wheel.</p>
             </div>`],
 
         intro_postChk: [
@@ -168,53 +168,71 @@ const exp = (function() {
 
     // define each wedge
     const wedges = {
-        two: {color:"#800001", label:"2"},
-        four: {color:"#803400", label:"4"},
-        five: {color:"#ffd800", label:"5"},
-        six: {color:"#806b00", label:"6"},
-        seven: {color:"#00fe21", label:"7"},
-        eight: {color:"#007f0e", label:"8"},
-        nine: {color:"#0094fe", label:"9"},
-        eleven: {color:"#0026ff", label:"11"},
-
-
-        one: {color:"#fe0000", label:"1"},
-        three: {color:"#fe6a00", label:"3"},
-        ten: {color:"#00497e", label:"10"},
-        twelve: {color:"#001280", label:"12"},
+        two: {color:"#A6CEE3", label:"2"},
+        four: {color:"#1F78B4", label:"4"},
+        five: {color:"#B2DF8A", label:"5"},
+        six: {color:"#33A02C", label:"6"},
+        seven: {color:"#FB9A99", label:"7"},
+        eight: {color:"#E31A1C", label:"8"},
+        nine: {color:"#FDBF6F", label:"9"},
+        eleven: {color:"#e8e83c", label:"11"},
+        one: {color:"#CAB2D6", label:"1"},
+        three: {color:"#6A3D9A", label:"3"},
+        ten: {color:"#FF7F00", label:"10"},
+        twelve: {color:"#B15928", label:"12"},
     };
 
 
     // define each wheel
+    const wheels_practice = [
+
+        /*  
+            1 1 3 3        ev = 2; mad = 1
+            10 10 12 12    ev = 11; mad = 1
+        */
+            {sectors: [ wedges.one, wedges.one, wedges.three, wedges.three ], ev: 2, mad: 1, mi: 1},
+            {sectors: [ wedges.ten, wedges.ten, wedges.twelve, wedges.twelve ], ev: 11, mad: 1, mi: 1},
+        /*  
+            5 5 5 5       ev = 5; mad = 0
+            8 8 8 8       ev = 8; mad = 0
+        */
+            {sectors: [ wedges.five, wedges.five, wedges.five, wedges.five ], ev: 5, mad: 0, mi: 0},
+            {sectors: [ wedges.eight, wedges.eight, wedges.eight, wedges.eight ], ev: 8, mad: 0, mi: 0},
+    ];
+
     const wheels = [
 
-     
-
-        /*  2 2
+        /*  
             4 4 5 5    ev = 4.5; mad = 0.5
             8 8 9 9    ev = 8.5; mad = 0.5
             2 2 7 7    ev = 4.5; mad = 2.5
             6 6 11 11  ev = 8.5; mad = 2.5
         */
-            {sectors: [ wedges.four, wedges.four, wedges.five, wedges.five ], ev: 4.5, mad: .5, mi: 1},
-            {sectors: [ wedges.eight, wedges.eight, wedges.nine, wedges.nine ], ev: 8.5, mad: 2.5, mi: 1},
-            {sectors: [ wedges.two, wedges.two, wedges.seven, wedges.seven ], ev: 4.5, mad: .5, mi: 1},
-            {sectors: [ wedges.five, wedges.five, wedges.twelve, wedges.twelve ], ev: 8.5, mad: 2.5, mi: 1},
+            {sectors: [ wedges.four, wedges.four, wedges.five, wedges.five ], ev: 4.5, mad: .5, mi: 1, src: "04040505", nums: ["4", "5"]},
+            {sectors: [ wedges.eight, wedges.eight, wedges.nine, wedges.nine ], ev: 8.5, mad: 2.5, mi: 1, src: "08080909", nums: ["8", "9"]},
+            {sectors: [ wedges.two, wedges.two, wedges.seven, wedges.seven ], ev: 4.5, mad: .5, mi: 1, src: "02020707", nums: ["2", "7"]},
+            {sectors: [ wedges.six, wedges.six, wedges.eleven, wedges.eleven ], ev: 8.5, mad: 2.5, mi: 1, src: "06061111", nums: ["6", "11"]},
 
-        /*  4
-            5 5 5 5 5   ev = 5; v = 0
-            9 9 9 9 9   ev = 9; v = 0
+        /*  
+            1 1 1 1       ev = 1; mad = 0
+            3 3 3 3       ev = 3; mad = 0
+            10 10 10 10   ev = 10; mad = 0
+            12 12 12 12   ev = 12; mad = 0
         */
-            {sectors: [ wedges.one, wedges.one, wedges.one, wedges.one ], ev: 1, mad: 0, mi: 0},
-            {sectors: [ wedges.three, wedges.three, wedges.three, wedges.three ], ev: 3, mad: 0, mi: 0},
-            {sectors: [ wedges.ten, wedges.ten, wedges.ten, wedges.ten ], ev: 10, mad: 0, mi: 0},
-            {sectors: [ wedges.twelve, wedges.twelve, wedges.twelve, wedges.twelve ], ev: 12, mad: 0, mi: 0},
-        ];
+            {sectors: [ wedges.one, wedges.one, wedges.one, wedges.one ], ev: 1, mad: 0, mi: 0, src: "01010101", nums: ["1"]},
+            {sectors: [ wedges.three, wedges.three, wedges.three, wedges.three ], ev: 3, mad: 0, mi: 0, src: "03030303", nums: ["3"]},
+            {sectors: [ wedges.ten, wedges.ten, wedges.ten, wedges.ten ], ev: 10, mad: 0, mi: 0, src: "10101010", nums: ["10"]},
+            {sectors: [ wedges.twelve, wedges.twelve, wedges.twelve, wedges.twelve ], ev: 12, mad: 0, mi: 0, src: "12121212", nums: ["12"]},
+    ];
 
 
     let scoreTracker = 0; // track current score
     let outcome = 0; // track outcome of each spin
     let round = 1;  // track current round
+    let color = null;
+    let pred1, pred2;
+    const affLabels = ['extremely negative', 'very negative', 'moderately negative', 'slightly negative', 'neither positive nor negative', 'slightly positive', 'moderately positive', 'very positive', 'extremely positive']
+    const confLabels = ['0<br>not at all confident', '1', '2', '3', '4', '5', '6', '7', '8<br>completely confident']
 
     const makeTokenArray = function() { return jsPsych.randomization.repeat(['plus', 'minus', 'normal', 'normal', 'normal'], 1) };
 
@@ -230,18 +248,19 @@ const exp = (function() {
         score: function() {
             return scoreTracker
         },
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
             scoreTracker = data.score;
             outcome = data.outcomes[0];
+            color = data.colors[0];
         }
     };
 
     const tokens = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: function() {
-            let tokenFeedback = `<div class="play-area"><div class="win-text">+${outcome} Tokens</div>{extra-text}</div>`;
+            let tokenFeedback = `<div class="play-area"><div class="win-text" style="color:${color}">+${outcome} Tokens</div>{extra-text}</div>`;
             const plusText = '<div class="plus-text">+5 Bonus</div>';
             const minusText = '<div class="minus-text">-5 Loss</div>';
             const bonusType = tokenArray.pop();
@@ -256,7 +275,7 @@ const exp = (function() {
         },
         choices: "NO_KEYS",
         trial_duration: 2000,
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             if (tokenArray.length == 0) {
                 tokenArray = makeTokenArray();
@@ -267,14 +286,68 @@ const exp = (function() {
     // trial: flow DV
     const affect_pre = {
         type: jsPsychSurveyLikert,
-        questions: [
-            {prompt: `<p>You're about to spin the following wheel. After doing so, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how positive or negative do you think you'll feel?`,
-            name: `affect_pre`,
-            labels: ['Extremely negative', 'Very negative', 'Moderately negative', 'Slightly negative', 'Neither positive nor negative', 'Slightly positive', 'Moderately positive', 'Very positive', 'Extremely positive']},
-        ],
+        preamble: function() { 
+            const wheel_html = `<img class="wheel_img" src="./img/${jsPsych.timelineVariable('src')}.png"></img>`;
+            const pream_html = `<p>You're about to spin the following wheel:${wheel_html}After doing so, you'll see how many tokens you earned.</p>`
+            return pream_html;
+        },
+        questions: function() {
+            const nums = jsPsych.timelineVariable('nums');
+            const q_html = [
+                {prompt: `<p>If you land on a <b>${nums[0]}</b>, how do you think you'll feel upon seeing how many tokens you earned?</p>`,
+                name: `affect_pre_1`,
+                labels: affLabels},
+            ];
+            if (jsPsych.timelineVariable('mi') == 1) {
+                q_html.push(
+                    {prompt: `<p>If you land on a <b>${nums[1]}</b>, how do you think you'll feel upon seeing how many tokens you earned?</p>`,
+                    name: `affect_pre_2`,
+                    labels: affLabels}
+                );
+            };
+            return q_html;
+        },
         randomize_question_order: false,
-        scale_width: 700,
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
+        scale_width: 730,
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
+        on_finish: function(data) {
+            pred1 = affLabels[data.response.affect_pre_1];
+            pred2 = affLabels[data.response.affect_pre_2];
+            data.round = round;
+            let scoreArray = jsPsych.data.get().select('score').values;
+            let outcomesArray = jsPsych.data.get().select('outcomes').values;
+            data.score = scoreArray[scoreArray.length - 1];
+            data.outcomes = outcomesArray[outcomesArray.length - 1];
+            saveSurveyData(data);
+        }
+    };
+
+    const confidence = {
+        type: jsPsychSurveyLikert,
+        preamble: function() { 
+            const wheel_html = `<img class="wheel_img" src="./img/${jsPsych.timelineVariable('src')}.png"></img>`;
+            const pream_html = `<p>You're about to spin the following wheel:${wheel_html}After doing so, you'll see how many tokens you earned.</p>`
+            return pream_html;
+        },
+        questions: function() {
+            const nums = jsPsych.timelineVariable('nums');
+            const q_html = [
+                {prompt: `<p>You said that if you land on a <b>${nums[0]}</b>, you'll feel <b>${pred1}</b> upon seeing how many tokens you earned.</p><p>How confident are you that this is how you'd feel?</p>`,
+                name: `confidence_1`,
+                labels: confLabels},
+            ];
+            if (jsPsych.timelineVariable('mi') == 1) {
+                q_html.push(
+                {prompt: `<p>You said that if you land on a <b>${nums[1]}</b>, you'll feel <b>${pred2}</b> upon seeing how many tokens you earned.</p><p>How confident are you that this is how you'd feel?</p>`,
+                    name: `confidence_2`,
+                    labels: confLabels}
+                );
+            };
+            return q_html;
+        },
+        randomize_question_order: false,
+        scale_width: 600,
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
             let scoreArray = jsPsych.data.get().select('score').values;
@@ -289,15 +362,15 @@ const exp = (function() {
         type: jsPsychSurveyLikert,
         questions: function() {
             const Qs = [
-                {prompt: `<p>You landed on a ${outcome}. Next, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how positive or negative do you think you'll feel?`,
+                {prompt: `<p>You landed on a <b>${outcome}</b>. Next, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how positive or negative do you think you'll feel?`,
                 name: `affect_pre`,
-                labels: ['Extremely negative', 'Very negative', 'Moderately negative', 'Slightly negative', 'Neither positive nor negative', 'Slightly positive', 'Moderately positive', 'Very positive', 'Extremely positive']},
+                labels: affLabels},
             ];
             return Qs;
         },
         randomize_question_order: false,
-        scale_width: 700,
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
+        scale_width: 730,
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
             let scoreArray = jsPsych.data.get().select('score').values;
@@ -317,7 +390,7 @@ const exp = (function() {
         ],
         randomize_question_order: false,
         scale_width: 600,
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
             let scoreArray = jsPsych.data.get().select('score').values;
@@ -328,49 +401,25 @@ const exp = (function() {
         }
     };
 
-    // trial: happiness DV
-    const happinessMeasure = {
-        type: jsPsychSurveyLikert,
-        questions: [
-            {prompt: `How happy are you right now?`,
-            name: `dv_value`,
-            labels: ['0<br>Very unhappy', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10<br>Very happy']},
-        ],
-        randomize_question_order: false,
-        scale_width: 600,
-        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('var'), arrangement: jsPsych.timelineVariable('arrangement')},
-        on_finish: function(data) {
-            data.round = round;
-            let scoreArray = jsPsych.data.get().select('score').values;
-            let outcomesArray = jsPsych.data.get().select('outcomes').values;
-            data.score = scoreArray[scoreArray.length - 2];
-            data.outcomes = outcomesArray[outcomesArray.length - 2];
-            saveSurveyData(data);
-            round++;
-        }
-    };
-
-    // flow proneness
-
 
     // timeline: main task
 
-    let dv;
-    if (settings.dv == "happiness") {
-        dv = happinessMeasure;
-    } else {
-        dv = flowMeasure;
-    };
-
     const wheelLoop = {
-        timeline: [affect_pre, spin, affect_post, tokens],
-        repetitions: 5,
+        timeline: [affect_pre, confidence, spin, affect_post, tokens],
+        repetitions: 1,
     };
 
     p.task = {
-        timeline: [spin],
+        timeline: [wheelLoop],
         repetitions: 1,
         timeline_variables: wheels,
+        randomize_order: true,
+    };
+
+    p.practice = {
+        timeline: [spin, tokens],
+        repetitions: 1,
+        timeline_variables: wheels_practice,
         randomize_order: true,
     };
 
@@ -563,6 +612,6 @@ const exp = (function() {
 
 }());
 
-const timeline = [exp.consent, exp.intro, exp.task, exp.demographics, exp.save_data];
+const timeline = [exp.task, exp.consent, exp.intro, exp.practice, exp.task, exp.demographics, exp.save_data];
 
 jsPsych.run(timeline);
