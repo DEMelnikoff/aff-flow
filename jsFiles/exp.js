@@ -332,13 +332,13 @@ const exp = (function() {
         questions: function() {
             const nums = jsPsych.timelineVariable('nums');
             const q_html = [
-                {prompt: `<p>You said that if you land on a <b>${nums[0]}</b>, you'll feel <b>${pred1}</b> upon seeing how many tokens you earned.</p><p>How confident are you that this is how you'd feel?</p>`,
+                {prompt: `<p>You said that if you land on a <b>${nums[0]}</b>, you'll feel <b>${pred1}</b> upon seeing how many tokens you earned.</br>How confident are you that this is how you'd feel?</p>`,
                 name: `confidence_1`,
                 labels: confLabels},
             ];
             if (jsPsych.timelineVariable('mi') == 1) {
                 q_html.push(
-                {prompt: `<p>You said that if you land on a <b>${nums[1]}</b>, you'll feel <b>${pred2}</b> upon seeing how many tokens you earned.</p><p>How confident are you that this is how you'd feel?</p>`,
+                {prompt: `<p>You said that if you land on a <b>${nums[1]}</b>, you'll feel <b>${pred2}</b> upon seeing how many tokens you earned.</br>How confident are you that this is how you'd feel?</p>`,
                     name: `confidence_2`,
                     labels: confLabels}
                 );
@@ -346,6 +346,7 @@ const exp = (function() {
             return q_html;
         },
         randomize_question_order: false,
+        post_trial_gap: 500,
         scale_width: 600,
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
@@ -369,6 +370,7 @@ const exp = (function() {
             return Qs;
         },
         randomize_question_order: false,
+        post_trial_gap: 500,
         scale_width: 730,
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
@@ -384,9 +386,18 @@ const exp = (function() {
     const flowMeasure = {
         type: jsPsychSurveyLikert,
         questions: [
-            {prompt: `During the last round of Spin the Wheel,<br>to what extent did you feel immersed and engaged in what you were doing?`,
+            {prompt: `How <b>immersive</b> was the wheel that you just spun?`,
+            name: `immersive`,
+            labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
+            {prompt: `How <b>engrossing</b> was the wheel that you just spun?`,
             name: `dv_value`,
-            labels: ['0<br>A little', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10<br>Extremely']},
+            labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
+            {prompt: `How <b>engaging</b> was the wheel that you just spun?`,
+            name: `dv_value`,
+            labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
+            {prompt: `How <b>boring</b> was the wheel that you just spun?`,
+            name: `dv_value`,
+            labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
         ],
         randomize_question_order: false,
         scale_width: 600,
@@ -402,15 +413,33 @@ const exp = (function() {
     };
 
 
+    const readyToSpin = {
+        type: jsPsychInstructions,
+        pages: function () {
+            return [`<div class='parent'>
+                <p>Next, you'll spin the following wheel 5 more times:<img class="wheel_img" src="./img/${jsPsych.timelineVariable('src')}.png"></img></p>
+                <p>Afterwards, you'll report and immersed and engaged you felt.</p>
+            </div>`];
+        },
+        show_clickable_nav: true,
+        post_trial_gap: 500,
+    };
+
+
     // timeline: main task
 
-    const wheelLoop = {
-        timeline: [affect_pre, confidence, spin, affect_post, tokens],
+    const affLoop = {
+        timeline: [affect_pre, confidence, spin, affect_post, tokens, readyToSpin],
         repetitions: 1,
     };
 
+    const flowLoop = {
+        timeline: [spin, tokens],
+        repetitions: 5,
+    };
+
     p.task = {
-        timeline: [wheelLoop],
+        timeline: [affLoop, flowLoop, flowMeasure],
         repetitions: 1,
         timeline_variables: wheels,
         randomize_order: true,
@@ -603,7 +632,7 @@ const exp = (function() {
     p.save_data = {
         type: jsPsychPipe,
         action: "save",
-        experiment_id: "3ea7j3v4FYxI",
+        experiment_id: "ds8FfrZqysSx",
         filename: filename,
         data_string: ()=>jsPsych.data.get().csv()
     };
