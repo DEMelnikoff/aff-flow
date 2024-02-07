@@ -37,24 +37,46 @@ const exp = (function() {
 
     const html = {
         intro_preChk: [
-            `<div class='parent'>
-                <p><strong>Welcome to Spin the Wheel!</strong></p>
-                <p>In Spin the Wheel, you'll spin a series of prize wheels.</p>
-                <p>Each time you spin a prize wheel, you'll earn points.
-                <br>The number of points you earn depends on where the wheel lands.</p>
-                <p>Your goal is to earn as many points as possible by spinning the prize wheels!</p>
+            `<div class='parent' style='text-align:left'>
+                <p><b>What makes some activities more immersive and engaging than others?</b></p>
+                <p>We're interested in why people feel effortlessly engaged in some activities (such as engrossing video games), but struggle to focus on other activities.</p>
+                <p>To help us, you'll play a game called <b>Spin the Wheel</b>. Throughout the game, you'll answer questions about your feelings and emotions.</p>
+                <p>To learn about Spin the Wheel, continue to the next screen.</p>
+            <div>`,
+
+            `<div class='parent' style='text-align:left'>
+                <p>Throughout Spin the Wheel, you'll be competing for a chance to win a <b>$100.00 bonus prize</b>.
+                Specifically, you'll earn tokens. The tokens you earn will be entered into a lottery, and if one of your tokens is drawn, you'll win $100.00.</p>
+                <p>To maximize your chances of winning a $100.00 bonus, you'll need to earn as many tokens as possible. Continue to learn how to earn tokens!</p>
             </div>`,
 
             `<div class='parent'>
-                <p>To spin a prize wheel, just grab it with your cursor and give it a spin!
-                <br>Watch the animation below to see how it's done.</p>
-                <img src="./img/spinGif.gif" style="width:60%; height:60%">
+                <p>You'll earn tokens by spinning various prize wheels. To spin a prize wheel, just grab it with your cursor and give it a spin!</p>
+                <p>Watch the animation below to see how it's done.</p>
+                <img src="./img/spinGif.gif" style="width:50%; height:50%">
             </div>`,
 
             `<div class='parent'>
-                <p>There are 18 prize wheels in total.<br>You will spin each prize wheel 5 times before continuing to the next wheel.</p>
-                <p>After spinning a wheel 5 times, you'll answer a question about your feelings.</br>
-                Specifically, you'll report how <b>immersed and engaged</b> you felt while spinning the previous wheel.</p>
+                <p>The number of tokens you win for each spin depends on where the wheel lands.</p>
+                <p>For example, if you land on a 5, you'll see a message like this one indicating that you earned 10 tokens.</p>
+                <div class="win-text-inst">+10 Tokens</div>
+            </div>`,
+            
+            `<div class='parent'>
+                <p>In addition to earning tokens from spinning, you can gain or lose tokens randomly.
+                Specifically, after, you have a 25% chance of winning 5 extra tokens, and a 25% chance of losing 5 tokens.</p>
+            </div>`,
+
+            `<div class='parent'>
+                <p>If you see "+5 Bonus," this means you randomly won 5 extra tokens. For example, this is what you'd see if you randomly won 5 extra tokens after landing on a 5:</p>
+                <div class="win-text-inst" style="color:green">+5 Tokens</div>
+                <div class="plus-text-inst">+5 Bonus</div>
+            </div>`,
+
+            `<div class='parent'>
+                <p>If you see "-5 Loss," this means you randomly won 5 extra tokens. For example, this is what you'd see if you randomly lost 5 tokens after landing on a 5:</p>
+                <div class="win-text-inst" style="color:green">+5 Tokens</div>
+                <div class="minus-text-inst">-5 Loss</div>
             </div>`],
 
         intro_postChk: [

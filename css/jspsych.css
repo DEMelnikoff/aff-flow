@@ -680,4 +680,36 @@
     margin-bottom: 20px;
 }
 
+.win-text-inst {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: 70px;
+    font-weight: bold;
+    color: green;
+    margin-top: 100px;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.plus-text-inst {
+  position: absolute;
+  top: 70%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 45px;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.minus-text-inst {
+  position: absolute;
+  top: 70%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 45px;
+  font-weight: bold;
+  color: red;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
 
