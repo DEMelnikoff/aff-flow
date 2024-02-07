@@ -218,14 +218,14 @@ const exp = (function() {
             1 1 3 3        ev = 2; mad = 1
             10 10 12 12    ev = 11; mad = 1
         */
-            {sectors: [ wedges.one, wedges.one, wedges.three, wedges.three ], ev: 2, mad: 1, mi: 1},
-            {sectors: [ wedges.ten, wedges.ten, wedges.twelve, wedges.twelve ], ev: 11, mad: 1, mi: 1},
+            {sectors: [ wedges.one, wedges.one, wedges.three, wedges.three ], ev: 2, mad: 1, mi: 1, src: "01010303", nums: ["1", "3"]},
+            {sectors: [ wedges.ten, wedges.ten, wedges.twelve, wedges.twelve ], ev: 11, mad: 1, mi: 1, src: "10101212", nums: ["10", "12"]},
         /*  
             5 5 5 5       ev = 5; mad = 0
             8 8 8 8       ev = 8; mad = 0
         */
-            {sectors: [ wedges.five, wedges.five, wedges.five, wedges.five ], ev: 5, mad: 0, mi: 0},
-            {sectors: [ wedges.eight, wedges.eight, wedges.eight, wedges.eight ], ev: 8, mad: 0, mi: 0},
+            {sectors: [ wedges.five, wedges.five, wedges.five, wedges.five ], ev: 5, mad: 0, mi: 0, src: "05050505", nums: ["5"]},
+            {sectors: [ wedges.eight, wedges.eight, wedges.eight, wedges.eight ], ev: 8, mad: 0, mi: 0, src: "08080808", nums: ["8"]},
     ];
 
     const wheels = [
@@ -287,7 +287,7 @@ const exp = (function() {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: function() {
             let tokenFeedback = `<div class="play-area"><div class="win-text" style="color:${color}">+${outcome} Tokens</div>{extra-text}</div>`;
-            const plusText = '<div class="plus-text">+6 Bonus</div>';
+            const plusText = '<div class="plus-text">+5 Bonus</div>';
             const minusText = '<div class="minus-text">-5 Loss</div>';
             const bonusType = tokenArray.pop();
             if (bonusType == 'plus') {
