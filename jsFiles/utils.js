@@ -72,7 +72,7 @@ const createSpinner = function(canvas, spinnerData, score, sectors) {
   const arc = (2 * PI) / tot; // arc sizes in radians
 
   /* spin dynamics */
-  const friction = 0.975;  // 0.995=soft, 0.99=mid, 0.98=hard
+  const friction = 0.978;  // 0.995=soft, 0.99=mid, 0.98=hard
   const angVelMin = 5; // Below that number will be treated as a stop
   let angVelMax = 0; // Random ang.vel. to acceletare to 
   let angVel = 0;    // Current angular velocity

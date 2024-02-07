@@ -234,7 +234,7 @@ const exp = (function() {
     const affLabels = ['extremely negative', 'very negative', 'moderately negative', 'slightly negative', 'neither positive nor negative', 'slightly positive', 'moderately positive', 'very positive', 'extremely positive']
     const confLabels = ['0<br>not at all confident', '1', '2', '3', '4', '5', '6', '7', '8<br>completely confident']
 
-    const makeTokenArray = function() { return jsPsych.randomization.repeat(['plus', 'minus', 'normal', 'normal', 'normal'], 1) };
+    const makeTokenArray = function() { return jsPsych.randomization.repeat(['plus', 'minus', 'normal', 'normal'], 1) };
 
     let tokenArray = makeTokenArray();
 
@@ -357,7 +357,7 @@ const exp = (function() {
         type: jsPsychSurveyLikert,
         questions: function() {
             const Qs = [
-                {prompt: `<p>You landed on a <b>${outcome}</b>. Next, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how positive or negative do you think you'll feel?`,
+                {prompt: `<p>You landed on a <b>${outcome}</b>. Next, you'll see how many tokens you earned.</p>When you see how many tokens you earned, how do you think you'll feel?`,
                 name: `affect_post`,
                 labels: affLabels},
             ];
@@ -386,7 +386,7 @@ const exp = (function() {
         },
         randomize_question_order: false,
         post_trial_gap: 500,
-        scale_width: 730,
+        scale_width: 600,
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
@@ -398,18 +398,18 @@ const exp = (function() {
         type: jsPsychSurveyLikert,
         preamble: `<div style='padding-top: 50px; width: 850px; font-size:16px'>
             <p>While spinning the last wheel, how <b>immersed</b> and <b>engaged</b> did you feel?</p>
-            <p>Report how immersive and engaging the last wheel was by answering the following questions.</p></div>`,
+            <p>Report how immersed and engaged you felt by answering the following questions.</p></div>`,
         questions: [
-            {prompt: `How <b>immersive</b> was the last wheel you spun?`,
+            {prompt: `How <b>immersive</b> was the last wheel?`,
             name: `immersive`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>engrossing</b> was the last wheel you spun?`,
+            {prompt: `How <b>engrossing</b> was the last wheel?`,
             name: `engrossing`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>engaging</b> was the last wheel you spun?`,
+            {prompt: `How <b>engaging</b> was the last wheel?`,
             name: `engaging`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>boring</b> was the last wheel you spun?`,
+            {prompt: `How <b>boring</b> was the last wheel?`,
             name: `boring`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
         ],
