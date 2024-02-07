@@ -25,7 +25,7 @@ jsPsych.data.addProperties({ subject: subject_id });
 const filename = `${subject_id}.csv`;
 
 // define completion code for Prolific
-const completionCode = "C1ACNNE6";
+const completionCode = "C17K8IIO";
 
 // when true, boot participant from study without redirecting to Prolific
 let boot = false;
