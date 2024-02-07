@@ -51,8 +51,8 @@ const exp = (function() {
             </div>`,
 
             `<div class='parent'>
-                <p>You'll earn tokens by spinning various prize wheels. To spin a prize wheel, just grab it with your cursor and give it a spin!
-                Watch the animation below to see how it's done.</p>
+                <p>You'll earn tokens by spinning various prize wheels.</p>
+                <p>To spin a prize wheel, just grab it with your cursor and give it a spin! Watch the animation below to see how it's done.</p>
                 <img src="./img/spinGif.gif" style="width:500px">
             </div>`,
 
