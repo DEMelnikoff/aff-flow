@@ -277,6 +277,7 @@ const exp = (function() {
         trial_duration: 2000,
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
+            data.round = round;
             if (tokenArray.length == 0) {
                 tokenArray = makeTokenArray();
             };
@@ -432,6 +433,9 @@ const exp = (function() {
         },
         show_clickable_nav: true,
         post_trial_gap: 500,
+        on_finish: function(data) {
+            data.round = round;
+        },
     };
 
 
