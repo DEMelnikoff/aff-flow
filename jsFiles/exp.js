@@ -485,7 +485,7 @@ const exp = (function() {
     };
 
     p.practice = {
-        timeline: [affLoop, flowLoop, flowMeasure],
+        timeline: [flowLoop],
         repetitions: 1,
         timeline_variables: wheels_practice,
         randomize_order: true,
