@@ -117,13 +117,7 @@ const exp = (function() {
             post_trial_gap: 500,
         };
 
-        let correctAnswers = [`5`];
-
-        if (settings.dv == 'flow') {
-            correctAnswers.push(`My level of immersion and engagement.`);
-        } else if (settings.dv == 'happiness') {
-            correctAnswers.push(`My level of happiness.`);
-        };
+        let correctAnswers = [`Win as many tokens as possible.`, `25%`, `25%`];
 
         const errorMessage = {
             type: jsPsychInstructions,
@@ -139,14 +133,19 @@ const exp = (function() {
                 </div>`,
             questions: [
                 {
-                    prompt: "How many times will you spin each wheel before continuing to the next wheel?", 
+                    prompt: "What must you do to maximize your chances of winning a $100.00 bonus!", 
                     name: `attnChk1`, 
-                    options: [`1`, `2`, `5`, `10`, `20`],
+                    options: [`Spin the wheels as fast as possible.`, `Win as many tokens as possible.`],
                 },
                 {
-                    prompt: "What will you be answering questions about?", 
+                    prompt: "After each spin, what are your chances of randomly winning 5 extra tokens?", 
                     name: `attnChk2`, 
-                    options: [`My level of happiness.`, `My level of immersion and engagement.`],
+                    options: [`0%`, `25%`, `50%`, `75%`, `100%`],
+                },
+                {
+                    prompt: "After each spin, what are your chances of randomly losing 5 tokens?", 
+                    name: `attnChk3`, 
+                    options: [`0%`, `25%`, `50%`, `75%`, `100%`],
                 },
             ],
             scale_width: 500,
