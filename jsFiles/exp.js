@@ -88,6 +88,7 @@ const exp = (function() {
         intro_postChk: [
             `<div class='parent'>
                 <p>You're ready to start playing Spin the Wheel!</p>
+                <p>Remember: Throughout the game, you'll answer questions about your feelings and emotions, in addition to spinning wheels for tokens.</p>
                 <p>Continue to the next screen to begin.</p>
             </div>`,      
         ],
