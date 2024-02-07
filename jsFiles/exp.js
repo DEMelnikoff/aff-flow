@@ -51,33 +51,40 @@ const exp = (function() {
             </div>`,
 
             `<div class='parent'>
-                <p>You'll earn tokens by spinning various prize wheels. To spin a prize wheel, just grab it with your cursor and give it a spin!</p>
-                <p>Watch the animation below to see how it's done.</p>
-                <img src="./img/spinGif.gif" style="width:50%; height:50%">
+                <p>You'll earn tokens by spinning various prize wheels. To spin a prize wheel, just grab it with your cursor and give it a spin!
+                Watch the animation below to see how it's done.</p>
+                <img src="./img/spinGif.gif" style="width:500px">
             </div>`,
 
             `<div class='parent'>
                 <p>The number of tokens you win for each spin depends on where the wheel lands.</p>
-                <p>For example, if you land on a 5, you'll see a message like this one indicating that you earned 10 tokens.</p>
-                <div class="win-text-inst">+10 Tokens</div>
+                <p>For example, if you land on a 6, you'll see a message like this one indicating that you earned 6 tokens.</p>
+                <div class="play-area-inst">
+                    <div class="win-text-inst">+6 Tokens</div>
+                </div>
             </div>`,
             
             `<div class='parent'>
                 <p>In addition to earning tokens from spinning, you can gain or lose tokens randomly.
-                Specifically, after, you have a 25% chance of winning 5 extra tokens, and a 25% chance of losing 5 tokens.</p>
+                Specifically, after each spin, you have a 25% chance of winning 5 extra tokens, and a 25% chance of losing 5 tokens.</p>
             </div>`,
 
             `<div class='parent'>
-                <p>If you see "+5 Bonus," this means you randomly won 5 extra tokens. For example, this is what you'd see if you randomly won 5 extra tokens after landing on a 5:</p>
-                <div class="win-text-inst" style="color:green">+5 Tokens</div>
-                <div class="plus-text-inst">+5 Bonus</div>
+                <p>If you see "+5 Bonus," this means you randomly won 5 extra tokens. For example, this is what you'd see if you randomly won 5 extra tokens after landing on a 6:</p>
+                <div class="play-area-inst">
+                    <div class="win-text-inst" style="color:green">+6 Tokens</div>
+                    <div class="plus-text-inst">+5 Bonus</div>
+                </div>
             </div>`,
 
             `<div class='parent'>
-                <p>If you see "-5 Loss," this means you randomly won 5 extra tokens. For example, this is what you'd see if you randomly lost 5 tokens after landing on a 5:</p>
-                <div class="win-text-inst" style="color:green">+5 Tokens</div>
-                <div class="minus-text-inst">-5 Loss</div>
-            </div>`],
+                <p>If you see "-5 Loss," this means you randomly lost 5 tokens. For example, this is what you'd see if you randomly lost 5 tokens after landing on a 6:</p>
+                <div class="play-area-inst">
+                    <div class="win-text-inst" style="color:green">+6 Tokens</div>
+                    <div class="minus-text-inst">-5 Loss</div>
+                </div>
+            </div>`
+        ],
 
         intro_postChk: [
             `<div class='parent'>
@@ -283,7 +290,7 @@ const exp = (function() {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: function() {
             let tokenFeedback = `<div class="play-area"><div class="win-text" style="color:${color}">+${outcome} Tokens</div>{extra-text}</div>`;
-            const plusText = '<div class="plus-text">+5 Bonus</div>';
+            const plusText = '<div class="plus-text">+6 Bonus</div>';
             const minusText = '<div class="minus-text">-5 Loss</div>';
             const bonusType = tokenArray.pop();
             if (bonusType == 'plus') {
@@ -481,7 +488,7 @@ const exp = (function() {
     };
 
     p.practice = {
-        timeline: [spin, tokens],
+        timeline: [affLoop, flowLoop, flowMeasure],
         repetitions: 1,
         timeline_variables: wheels_practice,
         randomize_order: true,

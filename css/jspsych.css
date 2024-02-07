@@ -330,7 +330,7 @@
 }
 
 .jspsych-content {
-  max-width: 95%;
+  max-width: 900px;
   /* this is mainly an IE 10-11 fix */
   text-align: center;
   margin: auto;
@@ -692,24 +692,34 @@
 }
 
 .plus-text-inst {
-  position: absolute;
-  top: 70%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  font-size: 45px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 70px;
   font-weight: bold;
   color: yellow;
+  margin-top: 100px;
   text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
 }
 
 .minus-text-inst {
-  position: absolute;
-  top: 70%; 
-  left: 50%; 
-  transform: translate(-50%, -50%); 
-  font-size: 45px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 70px;
   font-weight: bold;
   color: red;
+  margin-top: 100px;
   text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.play-area-inst {
+    position: relative;
+    width: 500px; 
+    height: 300px;
+    text-align: center; 
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin-top: 50px;
 }
 
