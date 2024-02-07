@@ -230,7 +230,7 @@ const exp = (function() {
     let outcome = 0; // track outcome of each spin
     let round = 0;  // track current round
     let color = null;
-    let pred1, pred2;
+    let pred1, pred2, post;
     const affLabels = ['extremely negative', 'very negative', 'moderately negative', 'slightly negative', 'neither positive nor negative', 'slightly positive', 'moderately positive', 'very positive', 'extremely positive']
     const confLabels = ['0<br>not at all confident', '1', '2', '3', '4', '5', '6', '7', '8<br>completely confident']
 
@@ -319,7 +319,7 @@ const exp = (function() {
         }
     };
 
-    const confidence = {
+    const confidence_pre = {
         type: jsPsychSurveyLikert,
         preamble: function() { 
             const wheel_html = `<img class="wheel_img" src="./img/${jsPsych.timelineVariable('src')}.png"></img>`;
@@ -368,23 +368,47 @@ const exp = (function() {
         data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
         on_finish: function(data) {
             data.round = round;
+            post = affLabels[data.response.affect_post];
+            saveSurveyData(data);
+        }
+    };
+
+    const confidence_post = {
+        type: jsPsychSurveyLikert,
+        questions: function() {
+            const Qs = [
+                {prompt: `<p>You said that you'll feel <b>${post}</b> upon seeing how many tokens you earned.</br>How confident are you that this is how you'll feel?</p>`,
+                name: `confidence_post`,
+                labels: confLabels},
+            ];
+            return Qs;
+        },
+        randomize_question_order: false,
+        post_trial_gap: 500,
+        scale_width: 730,
+        data: {ev: jsPsych.timelineVariable('ev'), var: jsPsych.timelineVariable('mad'), arrangement: jsPsych.timelineVariable('mi')},
+        on_finish: function(data) {
+            data.round = round;
             saveSurveyData(data);
         }
     };
 
     const flowMeasure = {
         type: jsPsychSurveyLikert,
+        preamble: `<div style='padding-top: 50px; width: 850px; font-size:16px'>
+            <p>While spinning the last wheel, how <b>immersed</b> and <b>engaged</b> did you feel?</p>
+            <p>Report how immersive and engaging the last wheel was by answering the following questions.</p></div>`,
         questions: [
-            {prompt: `How <b>immersive</b> was the wheel that you just spun?`,
+            {prompt: `How <b>immersive</b> was the last wheel you spun?`,
             name: `immersive`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>engrossing</b> was the wheel that you just spun?`,
+            {prompt: `How <b>engrossing</b> was the last wheel you spun?`,
             name: `engrossing`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>engaging</b> was the wheel that you just spun?`,
+            {prompt: `How <b>engaging</b> was the last wheel you spun?`,
             name: `engaging`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
-            {prompt: `How <b>boring</b> was the wheel that you just spun?`,
+            {prompt: `How <b>boring</b> was the last wheel you spun?`,
             name: `boring`,
             labels: ['0<br>Not at all', '1', '2', '3', '4', '5', '6', '7', '8<br>Extremely']},
         ],
@@ -403,7 +427,7 @@ const exp = (function() {
         pages: function () {
             return [`<div class='parent'>
                 <p>Next, you'll spin the following wheel 5 more times:<img class="wheel_img" src="./img/${jsPsych.timelineVariable('src')}.png"></img></p>
-                <p>Afterwards, you'll report and immersed and engaged you felt.</p>
+                <p>When you're ready, continue to the next page.</p>
             </div>`];
         },
         show_clickable_nav: true,
@@ -414,7 +438,7 @@ const exp = (function() {
     // timeline: main task
 
     const affLoop = {
-        timeline: [affect_pre, confidence, spin, affect_post, tokens, readyToSpin],
+        timeline: [affect_pre, confidence_pre, spin, affect_post, confidence_post, tokens, readyToSpin],
         repetitions: 1,
     };
 
