@@ -88,8 +88,8 @@ const exp = (function() {
         intro_postChk: [
             `<div class='parent'>
                 <p>You're ready to start playing Spin the Wheel!</p>
-                <p>Remember: Throughout the game, you'll answer questions about your feelings and emotions, in addition to spinning wheels for tokens.</p>
-                <p>Continue to the next screen to begin.</p>
+                <p>Remember: Throughout the game, you'll answer questions about your feelings and emotions, in addition to spinning wheels for tokens.
+                Continue to the next screen to begin.</p>
             </div>`,      
         ],
 
@@ -133,7 +133,7 @@ const exp = (function() {
                 </div>`,
             questions: [
                 {
-                    prompt: "What must you do to maximize your chances of winning a $100.00 bonus!", 
+                    prompt: "What must you do to maximize your chances of winning a $100.00 bonus?", 
                     name: `attnChk1`, 
                     options: [`Spin the wheels as fast as possible.`, `Win as many tokens as possible.`],
                 },
