@@ -214,7 +214,6 @@ const exp = (function() {
 
     // define each wheel
     const wheels_practice = [
-
         /*  
             1 1 3 3        ev = 2; mad = 1
             10 10 12 12    ev = 11; mad = 1
@@ -230,7 +229,6 @@ const exp = (function() {
     ];
 
     const wheels = [
-
         /*  
             4 4 5 5    ev = 4.5; mad = 0.5
             8 8 9 9    ev = 8.5; mad = 0.5
@@ -241,7 +239,6 @@ const exp = (function() {
             {sectors: [ wedges.eight, wedges.eight, wedges.nine, wedges.nine ], ev: 8.5, mad: 2.5, mi: 1, src: "08080909", nums: ["8", "9"]},
             {sectors: [ wedges.two, wedges.two, wedges.seven, wedges.seven ], ev: 4.5, mad: .5, mi: 1, src: "02020707", nums: ["2", "7"]},
             {sectors: [ wedges.six, wedges.six, wedges.eleven, wedges.eleven ], ev: 8.5, mad: 2.5, mi: 1, src: "06061111", nums: ["6", "11"]},
-
         /*  
             1 1 1 1       ev = 1; mad = 0
             3 3 3 3       ev = 3; mad = 0
